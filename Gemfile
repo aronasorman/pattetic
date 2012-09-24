@@ -10,6 +10,11 @@ gem 'twitter-bootstrap-rails'
 gem 'devise'
 gem 'thin'
 
+# omniauth shit
+gem 'omniauth'
+gem 'oauth2'
+gem 'omniauth-facebook'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

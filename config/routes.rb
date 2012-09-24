@@ -1,5 +1,7 @@
 Pattetic::Application.routes.draw do
   devise_for :users
+  
+  get 'tournament/:id' => 'tournament#fight'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
