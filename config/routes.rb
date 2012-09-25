@@ -1,5 +1,5 @@
 Pattetic::Application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   
   get 'tournament/:id' => 'tournament#fight'
 
@@ -52,7 +52,7 @@ Pattetic::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'tournament#fight'
 
   # See how all your routes lay out with "rake routes"
 
