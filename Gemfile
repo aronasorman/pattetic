@@ -15,6 +15,10 @@ gem 'omniauth'
 gem 'oauth2'
 gem 'omniauth-facebook'
 gem 'haml-rails'
+gem 'simple_form'
+
+# libsvm
+gem 'rb-libsvm'
 
 
 # Gems used only for assets and not required

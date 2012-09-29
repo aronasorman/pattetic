@@ -1,0 +1,4 @@
+= simple_form_for @round do |f|
+  = f.input :player1attack, collection: Round::ATTACKS, as: :radio_buttons, label: "Choose your attack", input_html: {class: "attack-choices"}
+  = f.input :user_id, as: :hidden, input_html: {value: current_user.id} 
+  = f.submit "submit", style: "display:none", id: "submit"

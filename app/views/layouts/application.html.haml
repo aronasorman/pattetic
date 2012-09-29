@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+%html{lang: "en"}
+  %head
+    <meta charset="utf-8">
+    %meta{ charset: "utf-8" }
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0"}
+    %title
+      = content_for?(:title) ? yield(:title): "Pattetic"
+
+    = stylesheet_link_tag "application", media: "all"
+
+    %link{ href: "images/favicon.ico", rel: "shortcut icon" }
+    %link{ href: "images/apple-touch-icon.png", rel: "apple-touch-icon" }
+
+  %body
+    %div{class: "navbar navbar-fixed-top"}
+      .navbar-inner
+        .container
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+          %a.brand{href: "#"} Pattetic
+          %div{ class: "container nav-collapse" }
+            %ul.nav
+              %li= link_to "Link1", "/path1"
+
+    .container
+      .content
+        .row
+          .span9 
+            = yield
+      %footer
+        %p &copy; Pattetic 2012
+    = javascript_include_tag "application"

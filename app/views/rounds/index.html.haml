@@ -1,0 +1,17 @@
+%h1 Listing rounds
+
+%table
+  %tr
+    %th Player1attack
+    %th Player2attack
+    %th
+
+  - @rounds.each do |round|
+    %tr
+      %td= round.player1attack
+      %td= round.player2attack
+      %td= link_to 'Show', round
+
+%br
+
+= link_to 'New Round', new_round_path
