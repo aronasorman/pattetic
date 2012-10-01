@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120927014613) do
+ActiveRecord::Schema.define(:version => 20121001044221) do
+
+  create_table "feature_rows", :force => true do |t|
+    t.string   "one_attack_ago"
+    t.string   "two_attacks_ago"
+    t.string   "three_attacks_ago"
+    t.integer  "user_id"
+    t.integer  "round_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
   create_table "rounds", :force => true do |t|
     t.string   "player1attack"
@@ -19,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20120927014613) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "user_id"
+    t.string   "round_type"
   end
 
   create_table "users", :force => true do |t|

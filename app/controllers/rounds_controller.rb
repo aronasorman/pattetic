@@ -2,10 +2,10 @@
 class RoundsController < ApplicationController
   # GET /rounds
   # GET /rounds.json
-  
+
   before_filter :authenticate_user!
-  
-  
+
+
   def index
     @rounds = Round.all
 
@@ -29,7 +29,7 @@ class RoundsController < ApplicationController
   # GET /rounds/new
   # GET /rounds/new.json
   def new
-    @round = Round.new
+    @round = Round.new(round_type: "real")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,42 +42,27 @@ class RoundsController < ApplicationController
   def create
     @round = Round.new(params[:round])
 
+
+    svmplayer = SvmPlayer.new # inefficient, i know
+    @round.player2attack = svmplayer.attack
+
+    message = case @round.determine_winner
+    when :player1
+      "you won the last round!"
+    when :player2
+      "you lost!"
+    else
+      "it was a draw!"
+    end
+    
     respond_to do |format|
       if @round.save
-        format.html { redirect_to @round, notice: 'Round was successfully created.' }
+        format.html { redirect_to new_round_path, notice: message }
         format.json { render json: @round, status: :created, location: @round }
       else
         format.html { render action: "new" }
         format.json { render json: @round.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # PUT /rounds/1
-  # PUT /rounds/1.json
-  def update
-    @round = Round.find(params[:id])
-
-    respond_to do |format|
-      if @round.update_attributes(params[:round])
-        format.html { redirect_to @round, notice: 'Round was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @round.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /rounds/1
-  # DELETE /rounds/1.json
-  def destroy
-    @round = Round.find(params[:id])
-    @round.destroy
-
-    respond_to do |format|
-      format.html { redirect_to rounds_url }
-      format.json { head :no_content }
     end
   end
 end

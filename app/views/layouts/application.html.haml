@@ -22,9 +22,14 @@
           %a.brand{href: "#"} Pattetic
           %div{ class: "container nav-collapse" }
             %ul.nav
-              %li= link_to "Link1", "/path1"
+              - if user_signed_in?
+                %li= link_to "Sign out", destroy_user_session_path, method: :delete, id: "sign-out"
 
     .container
+      - flash.each do |key, message|
+        %div{class: "alert alert-#{key}"}
+          %a.close(data-dismiss="alert") x
+          = message
       .content
         .row
           .span9 

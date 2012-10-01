@@ -1,0 +1,1 @@
+SVM_MODEL_FILE = 'model.svm'
