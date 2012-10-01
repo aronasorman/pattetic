@@ -40,7 +40,7 @@ class SvmPlayer
     # if svm's response doesn't make sense, choose random attack
     user_attack_to_response = Hash.new do
       puts "randomizing attack"
-      Round::ATTACKS[rand(0..2)]
+      Round::ATTACKS[rand(2)]
     end
     user_attack_to_response["rock"] = "paper"
     user_attack_to_response["paper"] = "scissors"
