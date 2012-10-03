@@ -25,6 +25,19 @@ class FeatureRow
       attack = round.player1attack
       ATTACK_TO_NUMERIC[attack]
     end
+    # add features that reflect repeated sequence of attacks by user
+    previous = nil
+    attack_frequency = {1.0 => 0, 2.0 => 0, 3.0 => 0}
+    (1..3).each do |attacki|
+      attack = attacki.to_f
+      @features.each do |current|
+        if current == previous and current == attack
+          attack_frequency[attack] += 1
+        end
+        previous = current
+      end
+    end
+    @features << attack_frequency.values
   end
 
   def label
